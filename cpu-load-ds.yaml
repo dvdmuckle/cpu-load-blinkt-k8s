@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: cpu-load-blinkt-k8s
+  namespace: kube-system
+  labels:
+    app: cpu-load-blinkt
+    teir: node
+spec:
+  selector:
+    matchLabels:
+      name: cpu-load-blinkt
+  template:
+    metadata:
+      labels:
+        name: cpu-load-blinkt
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      securityContext:
+        runAsUser: 1000
+      containers:
+      - name: cpu-load-blinkt
+        image: dvdmuckle/cpu-load-blinkt-k8s
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: devmem
+          mountPath: /dev/mem
+        securityContext:
+          runAsUser: 1000
+          privileged: true
+          #capabilities:
+          # add: ["SYS_RAWIO"]
+      volumes:
+      - name: devmem
+        hostPath:
+          path: /dev/mem
