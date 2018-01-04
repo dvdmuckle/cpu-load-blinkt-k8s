@@ -24,10 +24,10 @@ spec:
       - name: cpu-load-blinkt
         image: dvdmuckle/cpu-load-blinkt-k8s
         imagePullPolicy: Always
-        lifecycle:
-          preStop:
-            exec:
-              command: ["/usr/bin/python", "/root/examples/light_stop.py"]
+        #lifecycle:
+        # preStop:
+        #   exec:
+        #     command: ["/usr/bin/python", "light_stop.py"]
         volumeMounts:
         - name: devmem
           mountPath: /dev/mem
