@@ -12,7 +12,7 @@ hue = 0
 blinkt.set_clear_on_exit()
 blinkt.set_brightness(0.1)
 
-def sigterm_handler(signal, fram):
+def sigterm_handler(signal, frame):
     print "Signal caught, killing gracefully"
     blinkt.clear()
     blinkt.show()
