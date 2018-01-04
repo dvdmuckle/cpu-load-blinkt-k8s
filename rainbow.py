@@ -13,8 +13,9 @@ blinkt.set_clear_on_exit()
 blinkt.set_brightness(0.1)
 
 def sigterm_handler(signal, fram):
+    print "Signal caught, killing gracefully"
     blinkt.clear()
-    blink.show()
+    blinkt.show()
     sys.exit(0)
 signal.signal(signal.SIGTERM, sigterm_handler)
 signal.signal(signal.SIGINT, sigterm_handler)
