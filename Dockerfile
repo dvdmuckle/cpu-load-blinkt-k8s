@@ -10,12 +10,13 @@ ENTRYPOINT []
 
 WORKDIR /root/
 
-COPY library	library
+COPY blinkt/library	library
 WORKDIR /root/library
 RUN python setup.py install
 
 WORKDIR /root/
-COPY examples	examples
+COPY blinkt/examples	examples
+COPY light_stop.py	examples
 WORKDIR /root/examples/
 
 CMD ["python", "rainbow.py"]

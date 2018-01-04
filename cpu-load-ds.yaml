@@ -27,7 +27,7 @@ spec:
         lifecycle:
           preStop:
             exec:
-              command: ["kill", "1"]
+              command: ["/usr/bin/python", "/root/examples/light_stop.py"]
         volumeMounts:
         - name: devmem
           mountPath: /dev/mem
