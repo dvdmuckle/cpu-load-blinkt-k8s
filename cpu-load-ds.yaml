@@ -24,14 +24,15 @@ spec:
       - name: cpu-load-blinkt
         image: dvdmuckle/cpu-load-blinkt-k8s
         imagePullPolicy: Always
+        lifecycle:
+          preStop:
+            exec:
+              command: ["kill", "1"]
         volumeMounts:
         - name: devmem
           mountPath: /dev/mem
         securityContext:
-          runAsUser: 1000
           privileged: true
-          #capabilities:
-          # add: ["SYS_RAWIO"]
       volumes:
       - name: devmem
         hostPath:
