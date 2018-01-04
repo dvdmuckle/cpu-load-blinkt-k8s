@@ -3,5 +3,5 @@
 import blinkt,sys
 
 blinkt.clear()
-blink.show()
+blinkt.show()
 sys.exit(0)
