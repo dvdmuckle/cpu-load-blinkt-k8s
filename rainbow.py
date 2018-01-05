@@ -8,19 +8,19 @@ import signal, sys
 
 spacing = 360.0 / 16.0
 hue = 0
+running = True
 
 blinkt.set_clear_on_exit()
 blinkt.set_brightness(0.1)
 
-def sigterm_handler(signal, fram):
+def sigterm_handler(signal, frame):
     print "Signal caught, killing gracefully"
-    blinkt.clear()
-    blinkt.show()
-    sys.exit(0)
+    global running
+    running = False
 signal.signal(signal.SIGTERM, sigterm_handler)
 signal.signal(signal.SIGINT, sigterm_handler)
 
-while True:
+while running:
     hue = int(time.time() * 100) % 360
     for x in range(blinkt.NUM_PIXELS):
         offset = x * spacing
