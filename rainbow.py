@@ -13,7 +13,11 @@ running = True
 blinkt.set_clear_on_exit()
 blinkt.set_brightness(0.1)
 
-signal.signal(signal.SIGTERM, blinkt._exit)
+def sigterm_handler(signal, frame):
+    print "Signal caught, killing gracefully"
+    global running
+    running = False
+signal.signal(signal.SIGTERM, sigterm_handler)
 
 while running:
     hue = int(time.time() * 100) % 360
