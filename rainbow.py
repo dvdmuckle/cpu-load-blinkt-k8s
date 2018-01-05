@@ -17,7 +17,7 @@ def sigterm_handler(signal, frame):
     print "Signal caught, killing gracefully"
     global running
     running = False
-signal.signal(signal.SIGTERM, sigterm_handler)
+signal.signal(signal.SIGTERM, blinkt._exit)
 
 while running:
     hue = int(time.time() * 100) % 360
