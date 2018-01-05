@@ -28,4 +28,4 @@ while running:
         blinkt.set_pixel(x, r, g, b)
 
     blinkt.show()
-    time.sleep(0.001)
+    time.sleep(0.1)
