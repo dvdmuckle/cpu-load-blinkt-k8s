@@ -18,7 +18,6 @@ def sigterm_handler(signal, frame):
     global running
     running = False
 signal.signal(signal.SIGTERM, sigterm_handler)
-signal.signal(signal.SIGINT, sigterm_handler)
 
 while running:
     hue = int(time.time() * 100) % 360
