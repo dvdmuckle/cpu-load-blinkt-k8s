@@ -27,6 +27,7 @@ spec:
         lifecycle:
          preStop:
            exec:
+             #Hacky way to shut off the lights, otherwise the container won't get SIGTERM right      
              command: ["kill", "-TERM", "1"]
         volumeMounts:
         - name: devmem
