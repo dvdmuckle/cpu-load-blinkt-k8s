@@ -10,7 +10,15 @@ except ImportError:
 
 import blinkt
 
+running = True
+
 blinkt.set_clear_on_exit()
+
+def sigterm_handler(signal, frame):
+    print "Signal caught, killing gracefully"
+    global running
+    running = False
+signal.signal(signal.SIGTERM, sigterm_handler)
 
 def show_graph(v, r, g, b):
     v *= blinkt.NUM_PIXELS
@@ -26,7 +34,7 @@ def show_graph(v, r, g, b):
 
 blinkt.set_brightness(0.1)
 
-while True:
+while running:
     v = psutil.cpu_percent() / 100.0
     show_graph(v, 255, 255, 255)
-    time.sleep(0.01)
+    time.sleep(1)
