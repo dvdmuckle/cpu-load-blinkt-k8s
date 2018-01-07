@@ -16,8 +16,8 @@ RUN python setup.py install
 
 WORKDIR /root/
 COPY blinkt/examples	examples
-COPY light_stop.py	examples
 COPY rainbow.py		examples
+COPY cpu_load.py	examples
 WORKDIR /root/examples/
 
 CMD ["python", "rainbow.py"]
