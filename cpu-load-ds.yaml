@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: cpu-load-blinkt-k8s
-  namespace: kube-system
   labels:
     app: cpu-load-blinkt
     teir: node
